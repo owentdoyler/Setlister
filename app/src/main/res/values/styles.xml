@@ -1,0 +1,18 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="actionBarStyle">@style/Widget.ActionBar</item>
+    </style>
+    <style name="Widget.ActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="background">@color/app_green_color</item>
+    </style>
+
+    <style name="GoButtonStyle">
+        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/go_button_text</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">15dp</item>
+    </style>
+</resources>

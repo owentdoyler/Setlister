@@ -20,9 +20,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ArtistListActivity"
-                  android:label="@string/search_results">
+                  android:launchMode="singleTop">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                        android:value=".SetListerActivity"/>
+        </activity>
+        <activity android:name=".ArtistSetlistActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".ArtistListActivity"/>
         </activity>
     </application>
 

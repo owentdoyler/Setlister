@@ -1,6 +1,7 @@
 package setlister.android.owendoyle.com.setlister;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -28,7 +29,7 @@ public class ArtistListFragment extends ListFragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onActivityCreated(savedInstanceState);
         setRetainInstance(true);
     }
 
@@ -85,7 +86,15 @@ public class ArtistListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Artist artist = ((ArtistAdapter)getListAdapter()).getItem(position);
-        Log.d(TAG, "artist name: "+artist.getName() + "artist mbid: "+artist.getMbid());
+        String artistName = artist.getName();
+        String artistMbid = artist.getMbid();
+        if (DEBUG){
+            Log.d(TAG, "Artist selected(artist name: "+artistName + " artist mbid: "+ artistMbid +")");
+        }
+        Intent i = new Intent(getActivity(), ArtistSetlistActivity.class);
+        i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_NAME, artistName);
+        i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_MBID, artistMbid);
+        startActivity(i);
     }
 
     private class ArtistAdapter extends ArrayAdapter<Artist>{

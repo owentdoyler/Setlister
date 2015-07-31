@@ -1,6 +1,7 @@
 package setlister.android.owendoyle.com.setlister;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 /**
  * Created by Owen on 28/07/2015.
  */
@@ -24,6 +27,10 @@ public class SetListerFragment extends Fragment {
     private Button mGoButton;
     private String mArtistName;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
@@ -52,12 +59,17 @@ public class SetListerFragment extends Fragment {
         mGoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ArtistListActivity.class);
-                startActivity(i);
                 Log.d(TAG, "artist name: " + mArtistName);
+                if (mArtistName != null){
+                    Intent i = new Intent(getActivity(), ArtistListActivity.class);
+                    i.putExtra(ArtistListFragment.EXTRA_ARTIST_NAME, mArtistName);
+                    startActivity(i);
+                }
             }
         });
 
         return v;
     }
+
+
 }

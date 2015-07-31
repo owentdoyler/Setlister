@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,7 +38,8 @@ public class SetListerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       View v = inflater.inflate(R.layout.fragment_set_lister, container, false);
+        View v = inflater.inflate(R.layout.fragment_set_lister, container, false);
+        ((SetListerActivity)getActivity()).setActionBarTitle("Setlister");
 
         mArtistSearch = (EditText) v.findViewById(R.id.artist_search_box);
         mArtistSearch.addTextChangedListener(new TextWatcher() {

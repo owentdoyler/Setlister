@@ -3,6 +3,7 @@ package setlister.android.owendoyle.com.setlister;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
+import android.widget.TextView;
 
 /**
  * Created by Owen on 30/07/2015.
@@ -20,5 +21,6 @@ public class ArtistListActivity extends SingleFragmentActivity {
         getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_action_ic_arrow_back_48px_128);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mActionBarTitle = (TextView) findViewById(R.id.actionbar_title);
     }
 }

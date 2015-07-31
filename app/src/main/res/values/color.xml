@@ -3,7 +3,7 @@
     <color name="app_green_color">#97d973</color>
     <color name="app_darker_green_color">#ff5dd954</color>
     <color name="app_green_color_pressed">#ff1b9e29</color>
-    <color name="actionbar_text">#ffffff</color>
+    <color name="actionbar_text">#000000</color>
     <color name="hint_text_color">#555555</color>
     <color name="editText_color">#000000</color>
 </resources>

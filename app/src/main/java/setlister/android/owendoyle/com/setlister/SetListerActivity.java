@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class SetListerActivity extends SingleFragmentActivity {
@@ -15,6 +16,8 @@ public class SetListerActivity extends SingleFragmentActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar_layout);
+
+        mActionBarTitle = (TextView) findViewById(R.id.actionbar_title);
     }
 
     @Override

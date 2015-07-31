@@ -7,4 +7,5 @@
     <string name="search_text">Search for an artist and you can create a playlist based on their most recent setlists</string>
     <string name="go_button_text">GO</string>
     <string name="search_results">Search Results</string>
+    <string name="artist_search_empty_toast">Enter an artist name to Search for.</string>
 </resources>

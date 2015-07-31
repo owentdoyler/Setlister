@@ -1,5 +1,6 @@
 package setlister.android.owendoyle.com.setlister;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -60,10 +62,13 @@ public class SetListerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "artist name: " + mArtistName);
-                if (mArtistName != null){
+                if (mArtistName != null && !mArtistName.equals("")){
                     Intent i = new Intent(getActivity(), ArtistListActivity.class);
                     i.putExtra(ArtistListFragment.EXTRA_ARTIST_NAME, mArtistName);
                     startActivity(i);
+                }
+                else {
+                    Toast.makeText(getActivity(), R.string.artist_search_empty_toast, Toast.LENGTH_SHORT).show();
                 }
             }
         });

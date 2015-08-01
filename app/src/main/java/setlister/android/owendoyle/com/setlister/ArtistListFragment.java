@@ -15,6 +15,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import setlister.android.owendoyle.com.APIaccess.MusicBrainzFetcher;
+import setlister.android.owendoyle.com.APIaccess.SetlistFmFetcher;
+
 /**
  * Created by Owen on 30/07/2015.
  */
@@ -66,12 +69,13 @@ public class ArtistListFragment extends ListFragment {
 
         @Override
         protected ArrayList<Artist> doInBackground(String... params) {
-            ArrayList<Artist> artists = new ArtistLibrary().searchForArtists(params[0]);
+            ArrayList<Artist> artists = new MusicBrainzFetcher().searchForArtists(params[0]);
             if (DEBUG){
                 for(Artist artist : artists){
                     Log.i(TAG, "name: " + artist.getName() + "  mbid: " + artist.getMbid());
                 }
             }
+            new SetlistFmFetcher().getSetlists("", "Metallica");
             return artists;
         }
 

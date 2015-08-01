@@ -1,31 +1,27 @@
-package setlister.android.owendoyle.com.setlister;
+package setlister.android.owendoyle.com.APIaccess;
 
 
 import android.net.Uri;
 import android.util.Log;
-import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import org.apache.commons.lang3.text.WordUtils;
+
+import setlister.android.owendoyle.com.setlister.Artist;
 
 /**
  * Created by Owen on 30/07/2015.
  */
-public class ArtistLibrary {
+public class MusicBrainzFetcher extends ApiConnection{
 
-    private static final String TAG = "ArtistLibrary";
+    private static final String TAG = "MusicBrainzFetcher";
     private static final String ROOT = "http://musicbrainz.org/ws/2/artist/";
     private static final String QUERY = "?query=artist:";
     private static final String XML_FIRST_TAG = "metadata";
@@ -59,28 +55,6 @@ public class ArtistLibrary {
         return Artists;
     }
 
-
-    byte[] getUrlBytes(String urlSpec) throws IOException {
-        URL url = new URL(urlSpec);
-        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-        try {
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            InputStream in = connection.getInputStream();
-            if(connection.getResponseCode() != HttpURLConnection.HTTP_OK){
-                return null;
-            }
-            int bytesRead = 0;
-            byte[] buffer = new byte[1024];
-            while ((bytesRead = in.read(buffer)) > 0){
-                out.write(buffer, 0, bytesRead);
-            }
-            out.close();
-            return out.toByteArray();
-        }finally {
-            connection.disconnect();
-        }
-    }
-
     private ArrayList<Artist> parseXml(String xml){
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
@@ -88,10 +62,10 @@ public class ArtistLibrary {
             parser.setInput(new StringReader(xml));
             return parseItems(parser);
         }catch (XmlPullParserException xppe){
-            Log.d(TAG, "Failed to instansiate parser",xppe);
+            Log.d(TAG, "Failed to instantiate parser",xppe);
             return new ArrayList<Artist>();
         }catch (IOException ioe){
-            Log.d(TAG, "Failed to instansiate parser", ioe);
+            Log.d(TAG, "Failed to instantiate parser", ioe);
             return new ArrayList<Artist>();
         }
     }
@@ -152,23 +126,6 @@ public class ArtistLibrary {
             parser.nextTag();
         }
         return name;
-    }
-
-    private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
-        if (parser.getEventType() != XmlPullParser.START_TAG) {
-            throw new IllegalStateException();
-        }
-        int depth = 1;
-        while (depth != 0) {
-            switch (parser.next()) {
-                case XmlPullParser.END_TAG:
-                    depth--;
-                    break;
-                case XmlPullParser.START_TAG:
-                    depth++;
-                    break;
-            }
-        }
     }
 
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Set {
     private ArrayList<Song> mSet;
+    private String mArtist;
 
     public Set(){
         mSet = new ArrayList<Song>();
@@ -14,6 +15,11 @@ public class Set {
 
     public void addSong(Song song){
         mSet.add(song);
+        mArtist = song.getArtist();
+    }
+
+    public String getArtist(){
+        return mArtist;
     }
 
     public void addSongs(ArrayList<Song> songs){

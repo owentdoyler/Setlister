@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Setlist {
     private ArrayList<Song> mSetlist;
+    private String mArtist;
 
     public Setlist(){
         mSetlist = new ArrayList<Song>();
@@ -18,6 +19,11 @@ public class Setlist {
 
     public void addSet(Set set){
         mSetlist.addAll(set.getSet());
+        mArtist = set.getArtist();
+    }
+
+    public String getArtist(){
+        return mArtist;
     }
 
     public ArrayList<Song> getSetlist() {
@@ -32,4 +38,5 @@ public class Setlist {
         }
         return setlistString;
     }
+
 }

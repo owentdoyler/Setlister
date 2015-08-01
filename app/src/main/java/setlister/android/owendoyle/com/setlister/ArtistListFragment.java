@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 import setlister.android.owendoyle.com.APIaccess.MusicBrainzFetcher;
 import setlister.android.owendoyle.com.APIaccess.SetlistFmFetcher;
+import setlister.android.owendoyle.com.setlist.Setlists;
+import setlister.android.owendoyle.com.setlist.Song;
 
 /**
  * Created by Owen on 30/07/2015.
@@ -75,7 +77,7 @@ public class ArtistListFragment extends ListFragment {
                     Log.i(TAG, "name: " + artist.getName() + "  mbid: " + artist.getMbid());
                 }
             }
-            new SetlistFmFetcher().getSetlists("", "Metallica");
+
             return artists;
         }
 

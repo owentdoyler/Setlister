@@ -12,6 +12,7 @@ public class Song {
         mArtist = artist;
     }
 
+
     @Override
     public String toString() {
         return "Song title: "+mTitle+".   Song Artist: "+mArtist;
@@ -24,4 +25,5 @@ public class Song {
     public String getArtist() {
         return mArtist;
     }
+
 }

@@ -17,7 +17,7 @@ import setlister.android.owendoyle.com.setlist.Setlists;
  */
 public class SetlistFmFetcher extends ApiConnection{
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final String TAG = "SetlistFmFetcher";
     private static final String ROOT = "http://api.setlist.fm/rest/0.1/artist/";
     private static final String URL_END = "setlists";

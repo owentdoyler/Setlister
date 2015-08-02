@@ -8,4 +8,6 @@
     <string name="go_button_text">GO</string>
     <string name="search_results">Search Results</string>
     <string name="artist_search_empty_toast">Enter an artist name to Search for.</string>
+    <string name="playlist_name_hint">Playlist Name</string>
+    <string name="create_playlist">Create Playlist</string>
 </resources>

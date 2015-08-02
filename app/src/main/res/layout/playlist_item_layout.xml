@@ -2,15 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+    <CheckBox
+        android:id="@+id/song_selected_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:enabled="true"
+        android:padding="4dp"
+        android:focusable="false"/>
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/artist_list_nameTextView"
+              android:id="@+id/song_list_nameTextView"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:textAppearance="@android:style/TextAppearance.Medium"
               android:gravity="center_vertical"
               android:minHeight="48dip"
-              android:paddingLeft="15dip"/>
-
+              android:paddingLeft="15dip"
+              android:layout_toLeftOf="@+id/song_selected_checkbox"/>
 
 </RelativeLayout>

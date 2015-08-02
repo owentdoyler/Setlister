@@ -66,6 +66,19 @@ public class ArtistListFragment extends ListFragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        Artist artist = ((ArtistAdapter)getListAdapter()).getItem(position);
+        String artistName = artist.getName();
+        String artistMbid = artist.getMbid();
+        if (DEBUG){
+            Log.d(TAG, "Artist selected(artist name: "+artistName + " artist mbid: "+ artistMbid +")");
+        }
+        Intent i = new Intent(getActivity(), ArtistSetlistActivity.class);
+        i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_NAME, artistName);
+        i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_MBID, artistMbid);
+        startActivity(i);
+    }
 
     private class fetchArtistsTask extends AsyncTask<String, Void, ArrayList<Artist>> {
 
@@ -88,20 +101,6 @@ public class ArtistListFragment extends ListFragment {
             setListAdapter(adapter);
 
         }
-    }
-
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Artist artist = ((ArtistAdapter)getListAdapter()).getItem(position);
-        String artistName = artist.getName();
-        String artistMbid = artist.getMbid();
-        if (DEBUG){
-            Log.d(TAG, "Artist selected(artist name: "+artistName + " artist mbid: "+ artistMbid +")");
-        }
-        Intent i = new Intent(getActivity(), ArtistSetlistActivity.class);
-        i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_NAME, artistName);
-        i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_MBID, artistMbid);
-        startActivity(i);
     }
 
     private class ArtistAdapter extends ArrayAdapter<Artist>{

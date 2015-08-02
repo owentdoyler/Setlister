@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <EditText
+        style="@style/playlist_name_custom_editText"
+        android:textCursorDrawable="@null"
+        android:layout_width="0dp"
+        android:textColorHint="@color/hint_text_color"
+        android:textColor="@color/editText_color"
+        android:layout_height="wrap_content"
+        android:hint="@string/playlist_name_hint"
+        android:padding="8dp"
+        android:id="@+id/playlist_name"
+        android:layout_weight="5"/>
+    <TextView
+        android:textColor="@color/actionbar_text"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="@string/create_playlist"/>
+
+</LinearLayout>

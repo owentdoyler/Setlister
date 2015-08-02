@@ -18,9 +18,8 @@ public class ArtistSetlistActivity extends SingleFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.action_bar_layout);
+        getSupportActionBar().setCustomView(R.layout.actionbar_playlist_name_layout);
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_action_ic_arrow_back_48px_128);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mActionBarTitle = (TextView) findViewById(R.id.actionbar_title);
     }
 }

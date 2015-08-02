@@ -11,7 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -65,12 +69,6 @@ public class ArtistSetlistFragment extends ListFragment {
         new fetchSetlisTask().execute(mArtistMbid, mArtistName);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((ArtistSetlistActivity)getActivity()).setActionBarTitle(mArtistName);
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
     private class fetchSetlisTask extends AsyncTask<String, Void, ArrayList<Song>>{
         @Override
         protected ArrayList<Song> doInBackground(String... params) {
@@ -88,20 +86,42 @@ public class ArtistSetlistFragment extends ListFragment {
     }
 
     private class SetlistAdapter extends ArrayAdapter<Song>{
+        private ArrayList<Song> mSongs;
         public SetlistAdapter(ArrayList<Song> songs){
             super(getActivity(), 0, songs);
+            this.mSongs = songs;
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public Song getItem(int position) {
+            return this.mSongs.get(position);
+        }
+
+        @Override
+        public void insert(Song object, int index) {
+            this.mSongs.set(index, object);
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
             if (convertView == null){
-                convertView = getActivity().getLayoutInflater().inflate(R.layout.list_item_layout, null);
+                convertView = getActivity().getLayoutInflater().inflate(R.layout.playlist_item_layout, null);
             }
 
-            Song song = getItem(position);
+            final Song song = getItem(position);
 
-            TextView songname = (TextView) convertView.findViewById(R.id.artist_list_nameTextView);
+            TextView songname = (TextView) convertView.findViewById(R.id.song_list_nameTextView);
             songname.setText(song.getTitle());
+
+            CheckBox songSelected = (CheckBox) convertView.findViewById(R.id.song_selected_checkbox);
+            songSelected.setChecked(song.isSelected());
+            songSelected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    song.setSelected(isChecked);
+                    insert(song, position);
+                }
+            });
             return convertView;
         }
     }

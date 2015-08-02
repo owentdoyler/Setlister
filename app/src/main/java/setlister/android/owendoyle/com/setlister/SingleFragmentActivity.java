@@ -29,6 +29,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     }
 
     public void setActionBarTitle(String title){
-        mActionBarTitle.setText(title);
+        if (mActionBarTitle != null){
+            mActionBarTitle.setText(title);
+        }
     }
 }

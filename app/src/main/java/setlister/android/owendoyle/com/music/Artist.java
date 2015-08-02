@@ -1,4 +1,4 @@
-package setlister.android.owendoyle.com.setlister;
+package setlister.android.owendoyle.com.music;
 
 /**
  * Created by Owen on 30/07/2015.

@@ -1,4 +1,4 @@
-package setlister.android.owendoyle.com.setlist;
+package setlister.android.owendoyle.com.music;
 
 import java.util.ArrayList;
 
@@ -11,10 +11,6 @@ public class Setlist {
 
     public Setlist(){
         mSetlist = new ArrayList<Song>();
-    }
-
-    public void addSong(Song song){
-        mSetlist.add(song);
     }
 
     public void addSet(Set set){

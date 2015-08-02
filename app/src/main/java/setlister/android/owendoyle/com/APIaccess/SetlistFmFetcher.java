@@ -9,8 +9,8 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.StringReader;
-import setlister.android.owendoyle.com.setlist.*;
-import setlister.android.owendoyle.com.setlist.Setlists;
+import setlister.android.owendoyle.com.music.*;
+import setlister.android.owendoyle.com.music.Setlists;
 
 /**
  * Created by Owen on 31/07/2015.

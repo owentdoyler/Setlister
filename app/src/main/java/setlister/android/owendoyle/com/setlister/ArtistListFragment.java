@@ -16,9 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import setlister.android.owendoyle.com.APIaccess.MusicBrainzFetcher;
-import setlister.android.owendoyle.com.APIaccess.SetlistFmFetcher;
-import setlister.android.owendoyle.com.setlist.Setlists;
-import setlister.android.owendoyle.com.setlist.Song;
+import setlister.android.owendoyle.com.music.Artist;
 
 /**
  * Created by Owen on 30/07/2015.

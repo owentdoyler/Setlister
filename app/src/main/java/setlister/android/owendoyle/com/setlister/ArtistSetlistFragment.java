@@ -1,11 +1,10 @@
 package setlister.android.owendoyle.com.setlister;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +12,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import setlister.android.owendoyle.com.APIaccess.SetlistFmFetcher;
-import setlister.android.owendoyle.com.setlist.Setlists;
-import setlister.android.owendoyle.com.setlist.Song;
+import setlister.android.owendoyle.com.music.Playlist;
+import setlister.android.owendoyle.com.music.Setlists;
+import setlister.android.owendoyle.com.music.Song;
 
 /**
  * Created by Owen on 31/07/2015.
@@ -34,7 +34,9 @@ public class ArtistSetlistFragment extends ListFragment {
 
     private String mArtistName;
     private String mArtistMbid;
-
+    private EditText mPlaylitNameEditText;
+    private TextView mCreatPlaylist;
+    private Playlist mPlaylist;
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -69,6 +71,52 @@ public class ArtistSetlistFragment extends ListFragment {
         new fetchSetlisTask().execute(mArtistMbid, mArtistName);
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mPlaylist = new Playlist();
+        View v = ((ArtistSetlistActivity)getActivity()).getSupportActionBar().getCustomView();
+        mPlaylitNameEditText = (EditText)v.findViewById(R.id.playlist_name);
+        mPlaylitNameEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mPlaylist.setPlaylistName(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mCreatPlaylist = (TextView)v.findViewById(R.id.create_playlist);
+        mCreatPlaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mPlaylist.getPlaylistName() != null && !mPlaylist.getPlaylistName().equals("")){
+                    Toast.makeText(getActivity(), "making playlist: "+mPlaylist.getPlaylistName(), Toast.LENGTH_LONG).show();
+                    ArrayList<Song> songs = ((SetlistAdapter) getListAdapter()).getItems();
+                    for (Song song : songs){
+                        if (song.isSelected()){
+                            mPlaylist.addSong(song);
+                        }
+                    }
+
+                }
+                else {
+                    Toast.makeText(getActivity(), "Enter a name for the playlist", Toast.LENGTH_LONG).show();
+                }
+            }
+
+        });
+
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
     private class fetchSetlisTask extends AsyncTask<String, Void, ArrayList<Song>>{
         @Override
         protected ArrayList<Song> doInBackground(String... params) {
@@ -90,6 +138,10 @@ public class ArtistSetlistFragment extends ListFragment {
         public SetlistAdapter(ArrayList<Song> songs){
             super(getActivity(), 0, songs);
             this.mSongs = songs;
+        }
+
+        public ArrayList<Song> getItems(){
+            return this.mSongs;
         }
 
         @Override

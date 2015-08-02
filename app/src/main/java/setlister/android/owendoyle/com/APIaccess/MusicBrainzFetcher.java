@@ -14,7 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-import setlister.android.owendoyle.com.setlister.Artist;
+import setlister.android.owendoyle.com.music.Artist;
 
 /**
  * Created by Owen on 30/07/2015.

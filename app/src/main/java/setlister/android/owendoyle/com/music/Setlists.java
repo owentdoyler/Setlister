@@ -1,6 +1,4 @@
-package setlister.android.owendoyle.com.setlist;
-
-import android.util.Log;
+package setlister.android.owendoyle.com.music;
 
 import java.util.ArrayList;
 import java.util.HashMap;

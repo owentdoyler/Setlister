@@ -15,7 +15,8 @@
         android:id="@+id/playlist_name"
         android:layout_weight="5"/>
     <TextView
-        android:textColor="@color/actionbar_text"
+        android:id="@+id/create_playlist"
+        android:textColor="@color/textview_clicked_color"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"

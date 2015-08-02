@@ -1,4 +1,4 @@
-package setlister.android.owendoyle.com.setlist;
+package setlister.android.owendoyle.com.music;
 
 import java.util.ArrayList;
 
@@ -20,10 +20,6 @@ public class Set {
 
     public String getArtist(){
         return mArtist;
-    }
-
-    public void addSongs(ArrayList<Song> songs){
-        mSet.addAll(songs);
     }
 
     public ArrayList<Song> getSet() {

@@ -40,7 +40,7 @@ public class Setlists {
         HashMap<String, Integer> songCountMap = getCountMap();
         for (String songTitle : songCountMap.keySet()){
             int count = songCountMap.get(songTitle);
-            if (count > (mSetlists.size()/2)){
+            if (count > ((mSetlists.size()/2 > 4)? mSetlists.size()/2 : 0)){
                 songs.add(new Song(songTitle, mArtist));
             }
         }

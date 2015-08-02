@@ -23,18 +23,24 @@ public class SetlistFmFetcher extends ApiConnection{
     private static final String URL_END = "setlists";
     private static final String XML_OPENING = "setlists";
 
-    //TODO
-    private static final String TEST_MBID = "65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab";
-
     private String mArtistName;
     private String mMbid;
+
+    public boolean checkArtist(String mbid){
+        mMbid = mbid;
+        String url = Uri.parse(ROOT).buildUpon().appendPath(mMbid).appendPath(URL_END).build().toString();
+            boolean check = testUrl(url);
+            Log.d(TAG,""+check);
+            return check;
+
+    }
 
     public Setlists getSetlists(String mbid, String artistName){
         mArtistName = artistName;
         mMbid = mbid;
         Setlists setlists = new Setlists();
 
-        String url = Uri.parse(ROOT).buildUpon().appendPath(TEST_MBID).appendPath(URL_END).build().toString();
+        String url = Uri.parse(ROOT).buildUpon().appendPath(mMbid).appendPath(URL_END).build().toString();
         if(DEBUG){
             Log.d(TAG, "Got url: " + url);
         }

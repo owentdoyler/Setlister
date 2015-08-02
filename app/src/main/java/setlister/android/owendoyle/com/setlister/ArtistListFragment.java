@@ -77,15 +77,16 @@ public class ArtistListFragment extends ListFragment {
                     Log.i(TAG, "name: " + artist.getName() + "  mbid: " + artist.getMbid());
                 }
             }
-
             return artists;
         }
 
         @Override
         protected void onPostExecute(ArrayList<Artist> artists) {
+            setEmptyText("No artists found for the name: \""+mArtistSearchName+"\"");
             mArtists = artists;
             ArtistAdapter adapter = new ArtistAdapter(mArtists);
             setListAdapter(adapter);
+
         }
     }
 
@@ -117,7 +118,12 @@ public class ArtistListFragment extends ListFragment {
             Artist artist = getItem(position);
 
             TextView artistNameTextView = (TextView) convertView.findViewById(R.id.artist_list_nameTextView);
-            artistNameTextView.setText(artist.getName());
+            if (artist.getDisambiguation().equals("")){
+                artistNameTextView.setText(artist.getName());
+            }
+            else {
+                artistNameTextView.setText(artist.getName()+"("+artist.getDisambiguation()+")");
+            }
 
             return convertView;
         }

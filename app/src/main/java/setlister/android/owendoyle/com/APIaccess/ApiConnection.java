@@ -15,12 +15,13 @@ import java.net.URL;
  * Created by Owen on 01/08/2015.
  */
 public abstract class ApiConnection {
-    byte[] getUrlBytes(String urlSpec) throws IOException {
+  public  byte[] getUrlBytes(String urlSpec) throws IOException {
         URL url = new URL(urlSpec);
         HttpURLConnection connection = (HttpURLConnection)url.openConnection();
         try {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             InputStream in = connection.getInputStream();
+
             if(connection.getResponseCode() != HttpURLConnection.HTTP_OK){
                 return null;
             }
@@ -36,7 +37,19 @@ public abstract class ApiConnection {
         }
     }
 
-     void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
+    public  boolean testUrl(String urlSpec){
+
+        try {
+            URL url = new URL(urlSpec);
+            HttpURLConnection connection =(HttpURLConnection)url.openConnection();
+            InputStream in = connection.getInputStream();
+            return true;
+        }catch (IOException ioe){
+            return false;
+        }
+    }
+
+     public void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
         if (parser.getEventType() != XmlPullParser.START_TAG) {
             throw new IllegalStateException();
         }

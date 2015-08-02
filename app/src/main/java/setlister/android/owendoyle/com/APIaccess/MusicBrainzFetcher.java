@@ -72,6 +72,7 @@ public class MusicBrainzFetcher extends ApiConnection{
 
     private ArrayList<Artist> parseItems(XmlPullParser parser) throws XmlPullParserException, IOException{
         ArrayList<Artist> artists = new ArrayList<Artist>();
+        SetlistFmFetcher setlistFmFetcher = new SetlistFmFetcher();
         if (parser != null){
             while (parser.next() != XmlPullParser.END_TAG){
                 if (parser.getEventType() != XmlPullParser.START_TAG){
@@ -84,12 +85,16 @@ public class MusicBrainzFetcher extends ApiConnection{
                     continue;
                 }
                 else if (name.equals(TAG_NEEDED)){
-                    artists.add(parseTag(parser));
+                    Artist artist = parseTag(parser);
+                    if (setlistFmFetcher.checkArtist(artist.getMbid())){
+                        artists.add(artist);
+                    }
                 }
                 else {
                     skip(parser);
                 }
             }
+
             return artists;
         }
         else {
@@ -102,6 +107,7 @@ public class MusicBrainzFetcher extends ApiConnection{
         String artistName = null;
 
         String mbid = parser.getAttributeValue(null, ARTIST_MBID);
+        String disambiguation = "";
 
         while (parser.next() != XmlPullParser.END_TAG){
             if (parser.getEventType() != XmlPullParser.START_TAG){
@@ -111,11 +117,26 @@ public class MusicBrainzFetcher extends ApiConnection{
             if(name.equals(ARTIST_NAME)){
                 artistName = readArtistName(parser);
             }
+            else if (name.equals("disambiguation")){
+                disambiguation = readDisambiguation(parser);
+            }
             else {
                 skip(parser);
             }
         }
-        return new Artist(artistName, mbid);
+        Artist artist = new Artist(artistName, mbid);
+        artist.setDisambiguation(disambiguation);
+        return artist;
+    }
+
+    private String readDisambiguation(XmlPullParser parser) throws XmlPullParserException, IOException{
+        parser.require(XmlPullParser.START_TAG, null, "disambiguation");
+        String dis = "";
+        if (parser.next() == XmlPullParser.TEXT){
+            dis = parser.getText();
+            parser.nextTag();
+        }
+        return dis;
     }
 
     private String readArtistName(XmlPullParser parser) throws XmlPullParserException,IOException {

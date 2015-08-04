@@ -1,6 +1,4 @@
-package setlister.android.owendoyle.com.APIaccess;
-
-import android.util.Log;
+package setlister.android.owendoyle.com.DataAccess;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

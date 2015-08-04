@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import setlister.android.owendoyle.com.APIaccess.MusicBrainzFetcher;
+import setlister.android.owendoyle.com.DataAccess.MusicBrainzFetcher;
 import setlister.android.owendoyle.com.music.Artist;
 
 /**

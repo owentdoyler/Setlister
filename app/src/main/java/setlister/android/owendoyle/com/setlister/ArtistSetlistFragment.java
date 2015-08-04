@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import setlister.android.owendoyle.com.APIaccess.SetlistFmFetcher;
+import setlister.android.owendoyle.com.DataAccess.PlaylistCreator;
+import setlister.android.owendoyle.com.DataAccess.SetlistFmFetcher;
 import setlister.android.owendoyle.com.music.Playlist;
 import setlister.android.owendoyle.com.music.Setlists;
 import setlister.android.owendoyle.com.music.Song;
@@ -73,7 +73,7 @@ public class ArtistSetlistFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mPlaylist = new Playlist();
+        mPlaylist = new Playlist(mArtistName);
         View v = ((ArtistSetlistActivity)getActivity()).getSupportActionBar().getCustomView();
         mPlaylitNameEditText = (EditText)v.findViewById(R.id.playlist_name);
         mPlaylitNameEditText.addTextChangedListener(new TextWatcher() {
@@ -105,7 +105,13 @@ public class ArtistSetlistFragment extends ListFragment {
                             mPlaylist.addSong(song);
                         }
                     }
-
+                    int result = new PlaylistCreator(getActivity()).createPlaylist(mPlaylist);
+                    if (result > 0){
+                        Toast.makeText(getActivity(), "Done! "+result+"/"+mPlaylist.getSongs().size(), Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(getActivity(), "Nope!", Toast.LENGTH_LONG).show();
+                    }
                 }
                 else {
                     Toast.makeText(getActivity(), "Enter a name for the playlist", Toast.LENGTH_LONG).show();

@@ -1,6 +1,7 @@
 package setlister.android.owendoyle.com.setlister;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -54,10 +56,21 @@ public class SetListerFragment extends Fragment {
             }
         });
 
+        mArtistSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (v.getId() == R.id.playlist_name && !hasFocus){
+                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        });
+
         mGoButton = (Button)v.findViewById(R.id.go_button);
         mGoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mArtistSearch.clearFocus();
                 Log.d(TAG, "artist name: " + mArtistName);
                 if (mArtistName != null && !mArtistName.equals("")){
                     Intent i = new Intent(getActivity(), ArtistListActivity.class);

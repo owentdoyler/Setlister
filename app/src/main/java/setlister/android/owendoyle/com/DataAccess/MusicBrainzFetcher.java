@@ -32,7 +32,9 @@ public class MusicBrainzFetcher extends ApiConnection{
 
     public ArrayList<Artist> searchForArtists(String artistName){
         ArrayList<Artist> Artists = new ArrayList<Artist>();
-        artistName = artistName.replace(" ", "+");
+        if (artistName != null){
+            artistName = artistName.replace(" ", "+");
+        }
 
         try {
             artistName = URLEncoder.encode(artistName, "UTF-8");

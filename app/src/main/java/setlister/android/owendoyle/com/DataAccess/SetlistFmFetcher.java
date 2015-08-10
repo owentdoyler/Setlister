@@ -30,7 +30,6 @@ public class SetlistFmFetcher extends ApiConnection{
         mMbid = mbid;
         String url = Uri.parse(ROOT).buildUpon().appendPath(mMbid).appendPath(URL_END).build().toString();
             boolean check = testUrl(url);
-            Log.d(TAG,""+check);
             return check;
 
     }

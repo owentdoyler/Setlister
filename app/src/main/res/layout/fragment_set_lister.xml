@@ -55,6 +55,7 @@
                 android:layout_weight="5"
                 android:textColorHint="@color/hint_text_color"
                 android:textColor="@color/editText_color"
+                android:inputType="text"
                 />
             <View
                 android:layout_width="0dp"

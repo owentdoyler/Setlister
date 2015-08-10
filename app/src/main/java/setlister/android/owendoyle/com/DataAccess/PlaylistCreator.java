@@ -7,13 +7,19 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 import setlister.android.owendoyle.com.music.Playlist;
+import setlister.android.owendoyle.com.music.Song;
 
 /**
  * Created by Owen on 02/08/2015.
  */
 public class PlaylistCreator {
+
+    public static final int NO_ARTIST = -1;
+    public static final int NO_SONGS = -2;
+    public static final int ERROR = -3;
 
     private static final String TAG = "PlaylistCreator";
 
@@ -22,19 +28,35 @@ public class PlaylistCreator {
     public PlaylistCreator(Context context){
         mContext = context;
     }
-    public int createPlaylist(Playlist playlist){
+    public int createPlaylist(Playlist playlist, boolean overwrite){
         String[] artistNameVariations = playlist.getArtistsVariations();
         Cursor cursor = findSongs(artistNameVariations);
         int order = 1;
-        if (cursor != null){
-            Uri insertUri = setupPlaylist(playlist.getPlaylistName());
-            if (insertUri != null){
-                order = addToPlaylist(cursor, insertUri, order, playlist);
-                return (order-1);
+        if (cursor != null){ //if any artists matching the playlist artist was found
+
+            if (anySongsFound(cursor,playlist)){ //if any of the songs selected were found
+
+                Uri insertUri = setupPlaylist(playlist.getPlaylistName(), overwrite);
+                if (insertUri != null){ //if the playlist was setup correctly
+                    order = addToPlaylist(cursor, insertUri, order, playlist);
+                    cursor.close();
+                    return (order - 1); // return the number of songs that were found and added to the playlist
+
+                }
+                else{
+                    cursor.close();
+                    return ERROR;
+                }
             }
-            else return 0;
+            else {
+                cursor.close();
+                return NO_SONGS;
+            }
         }
-        else return 0;
+        else {
+            cursor.close();
+            return NO_ARTIST;
+        }
     }
 
     private Cursor findSongs(String[] artistNameVariations){
@@ -72,8 +94,10 @@ public class PlaylistCreator {
         else return null;
     }
 
-    private Uri setupPlaylist(String playlistName){
-        deletePlaylist(playlistName);
+    private Uri setupPlaylist(String playlistName, boolean overwrite){
+        if (overwrite){
+            deletePlaylist(playlistName);
+        }
         ContentResolver resolver = mContext.getContentResolver();
         ContentValues insert = new ContentValues();
         insert.put(MediaStore.Audio.Playlists.NAME, playlistName);
@@ -103,7 +127,19 @@ public class PlaylistCreator {
                     }
                 }
             }while (cursor.moveToNext());
+        cursor.close();
             return order;
+    }
+
+    private boolean anySongsFound(Cursor cursor, Playlist playlist){
+        cursor.moveToFirst();
+        do {
+            String songName = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
+            if (playlist.containsSong(songName)){
+                return true;
+            }
+        }while (cursor.moveToNext());
+        return false;
     }
 
     private boolean playlistContains(long id, Uri insertUri){
@@ -114,13 +150,16 @@ public class PlaylistCreator {
         String[] where = {""+id};
         Cursor c = mContext.getContentResolver().query(insertUri, field, selection, where, null);
         if (c.moveToFirst()){
+            c.close();
             return true;
         }
-        else return false;
-
+        else {
+            c.close();
+            return false;
+        }
     }
 
-    private void deletePlaylist(String playlistName){
+    public void deletePlaylist(String playlistName){
         String playlistId = getPlaylist(playlistName);
         if (playlistId != null){
             ContentResolver resolver = mContext.getContentResolver();
@@ -132,7 +171,7 @@ public class PlaylistCreator {
         }
     }
 
-    private String getPlaylist(String playlistName){
+    public String getPlaylist(String playlistName){
         Uri uri = MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI;
 
         String id = MediaStore.Audio.Playlists._ID;

@@ -10,4 +10,17 @@
     <string name="artist_search_empty_toast">Enter an artist name to Search for.</string>
     <string name="playlist_name_hint">Playlist Name</string>
     <string name="create_playlist">Create Playlist</string>
+    <string name="duplicate_playlist_alert_title">Playlist already exists:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">Ok</string>
+    <string name="playlist_create_error_title">Error creating playlist: </string>
+    <string name="playlist_create_error_text">The playlist was not created because an error occurred.</string>
+    <string name="playlist_not_created_title">The playlist was not created: </string>
+    <string name="playlist_not_created_artist_text1">The playlist was not created because the artist: </string>
+    <string name="playlist_not_created_artist_text2"> was not found on your device.</string>
+    <string name="playlist_not_created_song_text">The playlist was not created because none of the songs selected were found on the device.</string>
+    <string name="playlist_created_title">Playlist created: </string>
+    <string name="playlist_created_text1">The playlist: </string>
+    <string name="playlist_created_text2"> was successfully created.</string>
 </resources>

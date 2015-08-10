@@ -60,4 +60,8 @@ public class Playlist {
         };
         return variations;
     }
+
+    public void clearPlaylist(){
+        mSongs = new ArrayList<Song>();
+    }
 }

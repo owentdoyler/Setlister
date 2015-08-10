@@ -20,4 +20,25 @@
     <style name="playlist_name_custom_editText" parent="android:Widget.EditText">
         <item name="android:background">@drawable/setlistertheme_edit_text_holo_light</item>
     </style>
+
+    <style name="alertDialogTitle">
+        <item name="android:padding">7dp</item>
+        <item name="android:textColor">@color/actionbar_text</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/app_green_color</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="alertDialogText">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:padding">7dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

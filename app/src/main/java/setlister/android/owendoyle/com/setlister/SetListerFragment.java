@@ -59,7 +59,7 @@ public class SetListerFragment extends Fragment {
         mArtistSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (v.getId() == R.id.playlist_name && !hasFocus){
+                if (v.getId() == R.id.artist_search_box && !hasFocus){
                     InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
@@ -71,20 +71,23 @@ public class SetListerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mArtistSearch.clearFocus();
-                Log.d(TAG, "artist name: " + mArtistName);
-                if (mArtistName != null && !mArtistName.equals("")){
-                    Intent i = new Intent(getActivity(), ArtistListActivity.class);
-                    i.putExtra(ArtistListFragment.EXTRA_ARTIST_NAME, mArtistName);
-                    startActivity(i);
+                if (((SetListerActivity) getActivity()).hasInternrtAccess()){
+                    if (mArtistName != null && !mArtistName.equals("")){
+                        Intent i = new Intent(getActivity(), ArtistListActivity.class);
+                        i.putExtra(ArtistListFragment.EXTRA_ARTIST_NAME, mArtistName);
+                        startActivity(i);
+                    }
+                    else {
+                        Toast.makeText(getActivity(), R.string.artist_search_empty_toast, Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else {
-                    Toast.makeText(getActivity(), R.string.artist_search_empty_toast, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.no_connection_toast, Toast.LENGTH_LONG).show();
                 }
             }
         });
 
         return v;
     }
-
 
 }

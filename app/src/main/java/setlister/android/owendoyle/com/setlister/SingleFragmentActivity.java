@@ -38,4 +38,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     }
 
 
+    public boolean hasInternrtAccess(){
+        return ConnectionInformation.hasInternetAccess(this);
+    }
+
 }

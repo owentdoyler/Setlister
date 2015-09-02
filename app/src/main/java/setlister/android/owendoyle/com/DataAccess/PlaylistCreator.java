@@ -54,7 +54,6 @@ public class PlaylistCreator {
             }
         }
         else {
-            cursor.close();
             return NO_ARTIST;
         }
     }

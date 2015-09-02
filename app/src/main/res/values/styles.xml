@@ -4,7 +4,7 @@
         <item name="actionBarStyle">@style/Widget.ActionBar</item>
     </style>
     <style name="Widget.ActionBar" parent="Widget.AppCompat.ActionBar">
-        <item name="background">@color/app_green_color</item>
+        <item name="background">@drawable/actionbar_background_drawable</item>
         <item name="android:color">@color/actionbar_text</item>
     </style>
 

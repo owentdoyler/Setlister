@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="@drawable/background_blackcenter">
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -27,6 +28,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/search_text"
+                android:textColor="#ffffff"
                 android:layout_weight="3"
                 android:gravity="center"
                 />

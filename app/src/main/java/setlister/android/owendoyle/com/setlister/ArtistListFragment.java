@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -66,16 +67,21 @@ public class ArtistListFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Artist artist = ((ArtistAdapter)getListAdapter()).getItem(position);
-        String artistName = artist.getName();
-        String artistMbid = artist.getMbid();
-        if (DEBUG){
-            Log.d(TAG, "Artist selected(artist name: "+artistName + " artist mbid: "+ artistMbid +")");
+        if (((ArtistListActivity)getActivity()).hasInternrtAccess()){
+            Artist artist = ((ArtistAdapter)getListAdapter()).getItem(position);
+            String artistName = artist.getName();
+            String artistMbid = artist.getMbid();
+            if (DEBUG){
+                Log.d(TAG, "Artist selected(artist name: "+artistName + " artist mbid: "+ artistMbid +")");
+            }
+            Intent i = new Intent(getActivity(), ArtistSetlistActivity.class);
+            i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_NAME, artistName);
+            i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_MBID, artistMbid);
+            startActivity(i);
         }
-        Intent i = new Intent(getActivity(), ArtistSetlistActivity.class);
-        i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_NAME, artistName);
-        i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_MBID, artistMbid);
-        startActivity(i);
+        else {
+            Toast.makeText(getActivity(), R.string.no_connection_toast, Toast.LENGTH_LONG).show();
+        }
     }
 
     private class fetchArtistsTask extends AsyncTask<String, Void, ArrayList<Artist>> {

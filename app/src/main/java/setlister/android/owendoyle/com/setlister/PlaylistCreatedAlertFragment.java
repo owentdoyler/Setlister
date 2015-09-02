@@ -2,6 +2,7 @@ package setlister.android.owendoyle.com.setlister;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -60,7 +61,9 @@ public class PlaylistCreatedAlertFragment extends DialogFragment {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SetListerActivity.class);
                 dismiss();
+                startActivity(intent);
             }
         });
 

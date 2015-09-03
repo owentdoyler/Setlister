@@ -24,4 +24,11 @@
     <string name="playlist_created_text1">The playlist: </string>
     <string name="playlist_created_text2"> was successfully created.</string>
     <string name="no_connection_toast">No network access.</string>
+    <string name="About">About</string>
+    <string name="about_text">The purpose of this app is too to help you organise the music on your device when you are planing to go see a gig. Using this app you can create a playlist on your device of an artist\'s most played songs from their last few performances. This app uses the data provided by setlist.fm and Musicbrainz to create this playlist using the songs that are already stored on your device. </string>
+    <string name="action_bar_about">About Setlister</string>
+    <string name="action_help">Help</string>
+    <string name="enter_name_help">First enter a name for your playlist.</string>
+    <string name="uncheck_help">Then uncheck any songs that you do not want added to the playlist.</string>
+    <string name="create_help">Finally click the "Create Playlist" button to create the playlist.</string>
 </resources>

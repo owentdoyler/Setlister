@@ -8,4 +8,5 @@
     <color name="actionbar_text">#000000</color>
     <color name="editText_color">#000000</color>
     <color name="setlistertheme_color">#000000</color>
+    <color name="white">#ffffff</color>
 </resources>

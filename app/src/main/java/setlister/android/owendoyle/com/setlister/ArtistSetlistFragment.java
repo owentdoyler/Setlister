@@ -13,6 +13,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -40,7 +43,6 @@ public class ArtistSetlistFragment extends ListFragment {
     private static final String DIALOG_DUPLICATE_PLAYLIST = "duplicate_playlist_alert";
     private static final String DIALOG_PLAYLIST_CREATED = "playlist_created_alert";
     private static final int REQUEST_YES = 0;
-
     private static final String TAG = "ArtistSetlistFragment";
 
     private String mArtistName;
@@ -59,6 +61,8 @@ public class ArtistSetlistFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
 
         String artistName;
         String mbid;
@@ -82,6 +86,22 @@ public class ArtistSetlistFragment extends ListFragment {
         mArtistMbid = mbid;
 
         new fetchSetlisTask().execute(mArtistMbid, mArtistName);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_help:
+                Intent i = new Intent(getActivity(), HelpActivity.class);
+                startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_artistsetlist, menu);
     }
 
     @Override
@@ -219,6 +239,8 @@ public class ArtistSetlistFragment extends ListFragment {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.playlist_item_layout, null);
             }
 
+            convertView.setEnabled(false);
+            convertView.setOnClickListener(null);
             final Song song = getItem(position);
 
             TextView songname = (TextView) convertView.findViewById(R.id.song_list_nameTextView);

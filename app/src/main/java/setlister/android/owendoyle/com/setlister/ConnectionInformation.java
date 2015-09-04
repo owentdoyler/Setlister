@@ -19,7 +19,7 @@ public class ConnectionInformation {
         try {
             mNetworkInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         }catch (Exception e){
-            Log.e(TAG, "Error getting network info", e);
+            Log.e(TAG, e.getMessage());
         }
 
         if(mNetworkInfo != null && mNetworkInfo.isAvailable() && mNetworkInfo.isConnected()){

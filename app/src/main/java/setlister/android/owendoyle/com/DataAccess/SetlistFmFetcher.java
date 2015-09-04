@@ -9,15 +9,17 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.StringReader;
-import setlister.android.owendoyle.com.music.*;
+
+import setlister.android.owendoyle.com.music.Set;
+import setlister.android.owendoyle.com.music.Setlist;
 import setlister.android.owendoyle.com.music.Setlists;
+import setlister.android.owendoyle.com.music.Song;
 
 /**
  * Created by Owen on 31/07/2015.
  */
 public class SetlistFmFetcher extends ApiConnection{
 
-    private static final boolean DEBUG = false;
     private static final String TAG = "SetlistFmFetcher";
     private static final String ROOT = "http://api.setlist.fm/rest/0.1/artist/";
     private static final String URL_END = "setlists";
@@ -40,20 +42,15 @@ public class SetlistFmFetcher extends ApiConnection{
         Setlists setlists = new Setlists();
 
         String url = Uri.parse(ROOT).buildUpon().appendPath(mMbid).appendPath(URL_END).build().toString();
-        if(DEBUG){
-            Log.d(TAG, "Got url: " + url);
-        }
 
         try {
             String xml = new String(getUrlBytes(url));
             setlists = parseXml(xml);
         }catch (IOException ioe){
-            Log.d(TAG, "failed to get setlistFm xml", ioe);
+            Log.e(TAG,ioe.getMessage());
         }
 
-        if (DEBUG){
-            Log.d(TAG, setlists.toString());
-        }
+
         return setlists;
     }
 
@@ -64,10 +61,10 @@ public class SetlistFmFetcher extends ApiConnection{
             parser.setInput(new StringReader(xml));
             return parseItems(parser);
         }catch (XmlPullParserException xppe) {
-            Log.d(TAG, "Failed to instantiate Parser", xppe);
+            Log.e(TAG, xppe.getMessage());
             return new Setlists();
         }catch (IOException ioe){
-            Log.d(TAG, "Failed to instantiate parser");
+            Log.e(TAG,ioe.getMessage());
             return new Setlists();
         }
     }

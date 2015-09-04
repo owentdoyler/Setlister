@@ -1,14 +1,8 @@
 package setlister.android.owendoyle.com.setlister;
 
-import android.os.Handler;
-import android.os.Message;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 

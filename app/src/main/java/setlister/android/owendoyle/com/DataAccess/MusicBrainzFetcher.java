@@ -39,7 +39,7 @@ public class MusicBrainzFetcher extends ApiConnection{
         try {
             artistName = URLEncoder.encode(artistName, "UTF-8");
         }catch (UnsupportedEncodingException uee){
-            Log.d(TAG, "Failed to encode artist name", uee);
+            Log.e(TAG, uee.getMessage());
         }
 
         // create the url to search for artist from the musicbrainz api
@@ -50,7 +50,7 @@ public class MusicBrainzFetcher extends ApiConnection{
             //get the artists from the xml
             Artists = parseXml(xml);
         }catch (IOException ioe){
-            Log.d(TAG, "failed to get xml..", ioe);
+            Log.e(TAG, ioe.getMessage());
         }
 
 
@@ -64,10 +64,10 @@ public class MusicBrainzFetcher extends ApiConnection{
             parser.setInput(new StringReader(xml));
             return parseItems(parser);
         }catch (XmlPullParserException xppe){
-            Log.d(TAG, "Failed to instantiate parser",xppe);
+            Log.e(TAG, xppe.getMessage());
             return new ArrayList<Artist>();
         }catch (IOException ioe){
-            Log.d(TAG, "Failed to instantiate parser", ioe);
+            Log.e(TAG, ioe.getMessage());
             return new ArrayList<Artist>();
         }
     }

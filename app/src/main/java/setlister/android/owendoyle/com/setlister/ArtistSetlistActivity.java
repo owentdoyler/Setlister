@@ -3,7 +3,6 @@ package setlister.android.owendoyle.com.setlister;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
-import android.widget.TextView;
 
 /**
  * Created by Owen on 31/07/2015.

@@ -7,10 +7,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.widget.Toast;
 
 import setlister.android.owendoyle.com.music.Playlist;
-import setlister.android.owendoyle.com.music.Song;
 
 /**
  * Created by Owen on 02/08/2015.
@@ -60,9 +58,6 @@ public class PlaylistCreator {
 
     private Cursor findSongs(String[] artistNameVariations){
 
-        for (String st : artistNameVariations){
-            Log.d(TAG, "ArtistName: "+st);
-        }
         String[] columns = {
                 MediaStore.Audio.Media.ARTIST,
                 MediaStore.Audio.Media.TITLE,
@@ -87,7 +82,6 @@ public class PlaylistCreator {
 
         if (cursor.moveToFirst()){
             String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
-            Log.d("got title", title);
             return cursor;
         }
         else return null;

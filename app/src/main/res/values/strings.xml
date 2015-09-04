@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">Set Lister</string>
-
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Setlister</string>
     <string name="action_settings">Settings</string>
     <string name="search_hint">Search for an Artist</string>
     <string name="search_text">Search for an artist and you can create a playlist based on their most recent setlists</string>
@@ -13,7 +11,7 @@
     <string name="duplicate_playlist_alert_title">Playlist already exists:</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="playlist_create_error_title">Error creating playlist: </string>
     <string name="playlist_create_error_text">The playlist was not created because an error occurred.</string>
     <string name="playlist_not_created_title">The playlist was not created: </string>

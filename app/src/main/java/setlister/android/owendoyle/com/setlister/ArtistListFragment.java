@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,6 @@ import setlister.android.owendoyle.com.music.Artist;
  */
 public class ArtistListFragment extends ListFragment {
 
-    private static final boolean DEBUG = false;
     private static final String TAG = "ArtistListFragment";
     public static final String EXTRA_ARTIST_NAME = "com.owendoyle.android.setlister.artist_name";
 
@@ -71,9 +69,6 @@ public class ArtistListFragment extends ListFragment {
             Artist artist = ((ArtistAdapter)getListAdapter()).getItem(position);
             String artistName = artist.getName();
             String artistMbid = artist.getMbid();
-            if (DEBUG){
-                Log.d(TAG, "Artist selected(artist name: "+artistName + " artist mbid: "+ artistMbid +")");
-            }
             Intent i = new Intent(getActivity(), ArtistSetlistActivity.class);
             i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_NAME, artistName);
             i.putExtra(ArtistSetlistFragment.EXTRA_ARTIST_MBID, artistMbid);
@@ -89,11 +84,6 @@ public class ArtistListFragment extends ListFragment {
         @Override
         protected ArrayList<Artist> doInBackground(String... params) {
             ArrayList<Artist> artists = new MusicBrainzFetcher().searchForArtists(params[0]);
-            if (DEBUG){
-                for(Artist artist : artists){
-                    Log.i(TAG, "name: " + artist.getName() + "  mbid: " + artist.getMbid());
-                }
-            }
             return artists;
         }
 

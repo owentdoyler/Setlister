@@ -3,7 +3,8 @@
 Setlister is an Android app for people who like music and like going to see live music acts. Setlister makes it easy to prepare for any
 gig you are planning on going to. Setlister creates playlists on your phone based on what songs an artist has played in their last show.
 
-Setlister is available on the Google Play store: https://play.google.com/store/apps/details?id=setlister.android.owendoyle.com.setlister&hl=en
+Setlister is available on the Google Play store:
+https://play.google.com/store/apps/details?id=setlister.android.owendoyle.com.setlister&hl=en
 
 
 

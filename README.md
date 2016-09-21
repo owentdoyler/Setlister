@@ -6,7 +6,7 @@ gig you are planning on going to. Setlister creates playlists on your phone base
 Setlister is available on the Google Play store:
 <a href="https://play.google.com/store/apps/details?id=setlister.android.owendoyle.com.setlister&hl=en" target="_blank">Here</a>
 
-The information used to create these playlists is taken from
+The information used to create these playlists is obtained from
 <a href="http://www.setlist.fm/" target="_blank">setlist.fm</a>
  
 

@@ -1,6 +1,7 @@
 # Setlister
 
-**__Setlister is currently down because of an issue with the lates Android version. Afix is being worked on__**
+**Setlister is currently down because of an issue with the lates Android version. A fix is being worked on.**
+
 Setlister is an Android app for people who like music and like going to see live music acts. Setlister makes it easy to prepare for any
 gig you are planning on going to. Setlister creates playlists on your phone based on what songs an artist has played in their latest shows.
 

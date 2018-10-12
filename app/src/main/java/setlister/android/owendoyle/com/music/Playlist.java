@@ -1,7 +1,5 @@
 package setlister.android.owendoyle.com.music;
 
-import org.apache.commons.lang3.text.WordUtils;
-
 import java.util.ArrayList;
 
 /**
@@ -23,7 +21,8 @@ public class Playlist {
 
     public boolean containsSong(String songTitle){
         for (Song song : mSongs){
-            if (song.getTitle().toLowerCase().equals(songTitle.toLowerCase())){
+            if (song.getTitle().toLowerCase().equals(songTitle.toLowerCase())
+            || songTitle.toLowerCase().contains(song.getTitle().toLowerCase())){
                 return true;
             }
         }
@@ -55,7 +54,6 @@ public class Playlist {
         String[] variations = {
                 mArtist,
                 mArtist.toLowerCase(),
-                WordUtils.capitalize(mArtist),
                 mArtist.toUpperCase()
         };
         return variations;

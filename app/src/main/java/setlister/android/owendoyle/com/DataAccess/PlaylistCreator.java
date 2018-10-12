@@ -66,14 +66,12 @@ public class PlaylistCreator {
         String[] args = {
                 artistNameVariations[0],
                 artistNameVariations[1],
-                artistNameVariations[2],
-                artistNameVariations[3]
+                artistNameVariations[2]
         };
 
         Uri allSongUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
 
         String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0 AND ("
-                +MediaStore.Audio.Media.ARTIST+"=? OR "
                 +MediaStore.Audio.Media.ARTIST+"=? OR "
                 +MediaStore.Audio.Media.ARTIST+"=? OR "
                 +MediaStore.Audio.Media.ARTIST+"=? )";

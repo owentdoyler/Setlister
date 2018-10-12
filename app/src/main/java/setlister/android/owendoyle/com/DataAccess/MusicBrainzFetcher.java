@@ -22,7 +22,7 @@ import setlister.android.owendoyle.com.music.Artist;
 public class MusicBrainzFetcher extends ApiConnection{
 
     private static final String TAG = "MusicBrainzFetcher";
-    private static final String ROOT = "http://musicbrainz.org/ws/2/artist/";
+    private static final String ROOT = "https://musicbrainz.org/ws/2/artist/";
     private static final String QUERY = "?query=artist:";
     private static final String XML_FIRST_TAG = "metadata";
     private static final String XML_SECOND_TAG = "artist-list";

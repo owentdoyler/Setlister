@@ -21,7 +21,7 @@ import setlister.android.owendoyle.com.music.Song;
 public class SetlistFmFetcher extends ApiConnection{
 
     private static final String TAG = "SetlistFmFetcher";
-    private static final String ROOT = "http://api.setlist.fm/rest/0.1/artist/";
+    private static final String ROOT = "https://api.setlist.fm/rest/1.0/artist/";
     private static final String URL_END = "setlists";
     private static final String XML_OPENING = "setlists";
 
@@ -29,11 +29,16 @@ public class SetlistFmFetcher extends ApiConnection{
     private String mMbid;
 
     public boolean checkArtist(String mbid){
-        mMbid = mbid;
-        String url = Uri.parse(ROOT).buildUpon().appendPath(mMbid).appendPath(URL_END).build().toString();
-            boolean check = testUrl(url);
-            return check;
-
+//        mMbid = mbid;
+//        String url = Uri.parse(ROOT).buildUpon().appendPath(mMbid).appendPath(URL_END).build().toString();
+//        try{
+//            boolean check = testUrl(url);
+//            return check;
+//        } catch (IOException ioe){
+//            ioe.printStackTrace();
+//            return false;
+//        }
+        return true;
     }
 
     public Setlists getSetlists(String mbid, String artistName){
